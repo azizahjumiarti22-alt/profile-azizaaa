@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aziza Jumiarti - Portfolio & Jurnal Perjalanan</title>
+
+    <style>
+        /* --- Variabel Warna dan Font --- */
+        :root {
+            --pastel-green: #D0F0C0; 
+            --light-green: #B9E7A2; 
+            --accent-color: #5A7F68; 
+            --text-color: #333;
+            --heading-font: 'Playfair Display', serif; 
+            --body-font: 'Poppins', sans-serif;      
+        }
+
+        /* --- Global Styling (Smooth Scrolling Ditambahkan) --- */
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth; /* Efek bergerak/mulus saat klik menu */
+        }
+
+        body {
+            background-color: var(--pastel-green); 
+            font-family: var(--body-font);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* --- Navigasi Bar --- */
+        nav {
+            background-color: var(--accent-color);
+            padding: 15px 20px;
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Agar responsif di layar kecil */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 10px; /* Dikecilkan sedikit untuk menampung menu baru */
+            display: block;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #79a184; 
+        }
+        
+        /* --- Header / Hero Section --- */
+        .hero {
+            padding: 80px 20px;
+            background-color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-container {
+            margin-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; 
+            border: 5px solid var(--accent-color);
+            object-fit: cover;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 50px 20px;
+            margin: 30px auto;
+            max-width: 1000px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Pendidikan Section Styling Baru --- */
+        .pendidikan-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 5px solid var(--light-green);
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .pendidikan-item h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+
+        .pendidikan-item p {
+            margin: 5px 0;
+        }
+
+        .timeline-label {
+            font-style: italic;
+            color: #777;
+            font-size: 0.9em;
+        }
+        
+        /* --- Destinasi Section Styling --- */
+        .destinasi-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-bottom: 1px dashed var(--light-green);
+        }
+
+        .destinasi-item:last-child {
+            border-bottom: none;
+        }
+
+        .destinasi-item img {
+            width: 40%;
+            min-width: 300px; 
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .destinasi-item img:hover {
+            transform: scale(1.02);
+        }
+
+        .destinasi-info {
+            width: 60%;
+        }
+
+        .destinasi-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .destinasi-item.reverse .destinasi-info {
+            text-align: right;
+        }
+        
+        /* --- Hobi Section Styling --- */
+        .hobi-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .hobi-item {
+            flex-basis: 30%;
+            padding: 20px;
+            border: 1px solid var(--light-green);
+            border-radius: 8px;
+            background-color: #FAFAF5;
+        }
+
+        .hobi-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        
+        /* --- Galeri Section Styling --- */
+        .galeri-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .galeri-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s;
+        }
+
+        .galeri-grid img:hover {
+            opacity: 0.8;
+        }
+
+        /* --- Jurnal Section Styling --- */
+        .jurnal-post {
+            border: 1px solid var(--light-green);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #FAFAF5;
+        }
+
+        .jurnal-post h3 {
+            color: #4CAF50; 
+        }
+
+        .jurnal-post span.tanggal {
+            display: block;
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        /* --- Kontak Section Styling --- */
+        #kontak ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        #kontak li {
+            padding: 5px 0;
+            font-size: 1.1em;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 0.9em;
+        }
+
+        /* --- Media Queries (Responsiveness) --- */
+        @media (max-width: 768px) {
+            .destinasi-item,
+            .destinasi-item.reverse {
+                flex-direction: column; 
+                text-align: center;
+            }
+
+            .destinasi-item img,
+            .destinasi-info {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .destinasi-item.reverse .destinasi-info {
+                text-align: center; 
+            }
+
+            .hobi-grid {
+                flex-direction: column;
+            }
+
+            .hobi-item {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#hero">Beranda</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#pendidikan">Edukasi</a></li>
+            <li><a href="#destinasi">Impian</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+            <li><a href="#jurnal">Perjalanan</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="profile-container">
+            <img src="profil.jpg" alt="Foto Profil Saya Aziza Jumiarti" class="profile-photo">
+        </div>
+        <h1>*Aziza Jumiarti*</h1>
+        <p>Seorang yang mengubah rasa wanderlust menjadi tinta, dan destinasi impian menjadi paragraf pembuka</p>
+    </header>
+
+    <section id="tentang">
+        <h2>Tentang Saya</h2>
+        <p>
+Saya adalah seseorang yang percaya bahwa hidup adalah sebuah buku tebal yang harus dibaca sampai halaman terakhir. Gairah (wanderlust) untuk menjelajahi dunia adalah kompas utama saya, di mana setiap destinasi impian adalah paragraf pembuka bagi kisah baru yang menarik. Ketika tidak merencanakan rute ke benua berikutnya, Anda akan menemukan saya tenggelam dalam novel fiksi atau merangkai pengalaman ke dalam tinta jurnal. Singkatnya, saya hidup sebagai jembatan antara dunia aksara yang saya cintai dan cakrawala luas yang memanggil untuk dijelajahi.
+        </p>
+        <p>
+            Pada akhirnya, setiap kisah terindah harus dihidupkan, bukan hanya dibaca.
+        </p>
+    </section>
+
+    <section id="pendidikan">
+        <h2>Pendidikan & Kontribusi</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Riwayat akademik, organisasi, dan unit kegiatan mahasiswa (UKM) yang membentuk karakter saya.</p>
+
+        <div class="pendidikan-item">
+            <h3>Universitas Bengkulu</h3>
+            <p class="timeline-label">2025 – Sekarang | Mahasiswa Pendidikan Kimia(S1)</p>
+            <p>Fokus utama yaitu pada pendidkikan dan new experience. Lulus dengan predikat CumLaude/Sangat Memuaskan].</p>
+        </div>
+
+        <div class="pendidikan-item">
+            <h3>Organisasi Mahasiswa "HIMAMIA"</h3>
+            <p class="timeline-label">2025 – Sekarang | Divisi Kesekretariatan </p>
+            <p>Berkontribusi dengan baik sesama rekan devisi kesekretariatan.</p>
+        </div>
+
+        <div class="pendidikan-item">
+            <h3>UKM  "Media Rafflesia (MEDIRA)"</h3>
+            <p class="timeline-label">2025 – Sekarang | Anggota Aktif Bidang Research and Development</p>
+            <p>Mengasah kemampuan dalam bidang Kepenulisan. Mengikuti berbagai kepanitiaan yang telah dilaksankan.</p>
+        </div>
+    </section>
+
+    <section id="destinasi">
+        <h2>Destinasi Impian</h2>
+        
+        <div class="destinasi-item">
+            <img src="negaraArabSaudi.jpg" alt="Pemandangan Arab Saudi">
+            <div class="destinasi-info">
+                <h3>1. Arab Saudi</h3>
+                <p class="keterangan">
+                    Keterangan: Saya sangat tertarik dengan negara Arab Saudi memiliki beragam destinasi, terutama yang berhubungan dengan situs suci seperti Masjidil Haram dan Masjid Nabawi, namun juga menawarkan keindahan alam seperti Gunung Uhud dan Gurun Rub' Al Khali, serta situs modern dan bersejarah lainnya seperti King Abdullah Park dan Al-Balad. Selain situs religius, Arab Saudi juga memiliki destinasi alam seperti Kawah Al Wahbah dan Taman Nasional Asir, serta proyek kota futuristik seperti NEOM
+                </p>
+            </div>
+        </div>
+        
+        <div class="destinasi-item reverse">
+            <img src="negaraSwiss.jpg" alt="pemandangan Swiss">
+            <div class="destinasi-info">
+                <h3>2. Swiss</h3>
+                <p class="keterangan">
+                    Keterangan: perpaduan keindahan alam dan keunikan budaya, mulai dari pegunungan ikonik seperti Matterhorn dan Jungfraujoch (Top of Europe), hingga kota-kota menawan seperti Geneva, Zurich, dan Lucerne. wisatawan yanh pergi ke sana juga dapat menikmati pemandangan danau yang indah seperti Danau Zurich dan Danau Geneva, serta mencoba pengalaman unik naik kereta panoramic seperti Bernina Express atau mengunjungi Air Terjun Rhine.
+                </p>
+            </div>
+        </div>
+
+        <div class="destinasi-item">
+            <img src="negaraTokyo.jpg" alt="Pemandangan Metropolis Tokyo">
+            <div class="destinasi-info">
+                <h3>3. Metropolis Tokyo</h3>
+                <p class="keterangan">
+                    Keterangan: Tempat Wisata dan Aktifitas Terbaik di Tokyo - Tour JapanTempat wisata populer di Tokyo meliputi Shibuya Crossing, Kuil Senso-ji, Tokyo Skytree, Shinjuku Gyoen National Garden, dan Kuil Meiji Jingu. Ada juga tempat wisata untuk keluarga seperti Tokyo Disneyland dan Tokyo DisneySea, serta area perbelanjaan mewah seperti Ginza. Bagi pencinta budaya, kunjungi Museum Ghibli dan Teater Kabukiza.
+                </p>
+            </div>
+        </div>
+        
+    </section>
+
+    <section id="galeri">
+        <h2>Galeri Foto Yang Disukai</h2>
+        <p style="text-align: center;">Koleksi momen-momen terbaik yang sangat saya sukai di alam.</p>
+        <div class="galeri-grid">
+            <img src="pantai.jpg" alt="Foto Pantai">
+            <img src="gunung.jpg" alt="Foto Gunung">
+            <img src="langit.jpg" alt="Foto Langit">
+            <img src="hujan.jpg" alt="Foto Hujan">
+            <img src="airterjun.jpg" alt="Foto Air Terjun">
+            <img src="alam.jpg" alt="Foto Alam">
+        </div>
+    </section>
+
+    <section id="jurnal">
+        <h2> Perjalanan Sebagai Mahasiswi & Catatan</h2>
+        
+        <div class="jurnal-post">
+            <h3> Kemah Bakti Sosial HIMAMIA 2025</h3>
+            <span class="tanggal">Diposting: 01 November 2025</span>
+            <p>
+                Kami mengikuti kegiatan Kemah Bakti Sosial bersama teman-teman. Kami berangkat dari kampus menuju lokasi yang sudah ditentukan untuk melakukan KBS himpunan mahasiswa pendidikan kimia 2025, kami bercanda bersama saat di dalam bus, kegiatan dilakukan selama 3 hari dan alhamdulillah berjalan dengan lancar.
+            </p>
+            <a href="#jurnal" style="color: var(--accent-color);">Baca Selengkapnya...</a>
+        </div>
+
+        <div class="jurnal-post">
+            <h3>Wisuda Institut laskar Fatmawati 2025</h3>
+            <span class="tanggal">Diposting: 16 November 2025</span>
+            <p>
+                Saya mengikuti wisuda Institusi Laskar Fatmawati dengan penuh antusias. Acara berjalan tertib mulai dari registrasi, prosesi wisuda, hingga penutupan. Momen penyematan tanda kelulusan menjadi bagian paling berkesan. Kegiatan berlangsung lancar dan memberi rasa bangga serta motivasi untuk terus berkembang.
+            </p>
+            <a href="#jurnal" style="color: var(--accent-color);">Baca Selengkapnya...</a>
+        </div>
+    </section>
+
+    <section id="hobi">
+        <h2>Hobi dan Minat </h2>
+        <div class="hobi-grid">
+            <div class="hobi-item">
+                <img src="membacanovel.jpg" alt="Ikon Buku">
+                <h4>Membaca Fiksi/Non Fiksi</h4>
+                <p>Hobi dan Minat membaca karena membaca dapat menambah wawasan, melatih fokus, memperkaya kosakata, dan membantu memahami berbagai informasi yang berguna dalam kehidupan sehari-hari.</p>
+            </div>
+            <div class="hobi-item">
+                <img src="jalan-jalan.jpg" alt="Ikon Jalan-jalan">
+                <h4>Jalan-jalan/Jelajah Alam</h4>
+                <p>Hobi dan Minat jalan-jalan/menjelajah alam karena kegiatan ini memberikan rasa tenang, menambah pengalaman baru, serta membuat saya lebih menghargai keindahan dan ketenangan alam.</p>
+            </div>
+            <div class="hobi-item">
+                <img src="organisasi.jpg" alt="Ikon Organisasi">
+                <h4>Organisasi</h4>
+                <p>Hobi dan Minat berorganisasi karena melalui organisasi saya bisa belajar bekerja sama, melatih kepemimpinan, menambah relasi, dan mengembangkan kemampuan komunikasi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak">
+        <h2>Hubungi Saya</h2>
+        <p>Mari terhubung dan berbagi cerita perjalanan!</p>
+        <ul>
+            <li>Email: azizajumiarti237@gmail.com</li>
+            <li>Instagram: @myazizah__</li>
+            <li>Threads: @myazizah--</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Aziza Jumiarti. seseorang yang ingin mewujudkan sejuta mimpinya menjadi kenyataan</p>
+    </footer>
+
+</body>
+</html>
